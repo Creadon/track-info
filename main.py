@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def appPage():
     data = trackInfo()
-    return render_template('app.html',
+    return render_template('index.html',
         art = data['albumArtwork'],
         track = data['title'],
         artist = data['artist'], 
