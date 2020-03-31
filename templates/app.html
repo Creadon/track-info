@@ -3,13 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="templates/style.css">
-    <title>{{tabTitle}}</title>
+    <title>What's playing?</title>
 </head>
-<body style='background: black;'>
-    <h1 style='color: white;'>{{track}}</h1>
-    <h2 style='color: white;'>{{artist}}</h2>
-    <h3 style='color: white;'>{{album}}</h3>
-    <img src={{art}}>
+<body>
+    <div class='main'>
+        <div>
+            <img src={{art}}>
+        </div>
+        <div class='textbox'>
+            <h1>{{track}}</h1>
+            <h2>{{artist}}</h2>
+            <h3>{{album}}</h3>
+        </div>
+    </div>
 </body>
 </html>
+
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: sans-serif;
+    }
+    .main {
+        margin-top: 25vh;
+        display: flex;
+        justify-content: center;
+        vertical-align: center;
+    }
+    img {
+        width: 320px;
+        height: 320px;
+        border: 2px solid white;
+    }
+    .textbox {
+        margin-top: 9vh;
+        padding-left: 80px;
+        justify-content: left;
+    }
+</style>
