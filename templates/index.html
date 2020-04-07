@@ -8,12 +8,12 @@
 <body>
     <div class='main'>
         <div>
-            <img id='trackArt' src={{art}}>
+            <img id='artwork' src=''>
         </div>
         <div class='textbox'>
-            <h1 id='trackName'>{{track}}</h1>
-            <h2 id='trackArtist'>{{artist}}</h2>
-            <h3 id='albumName'>{{album}}</h3>
+            <h1 id='title'>Title</h1>
+            <h2 id='artist'>Artist</h2>
+            <h3 id='album'>Album</h3>
         </div>
     </div>
 </body>
@@ -45,4 +45,33 @@
 
 <script>
     
+    function updateText(element) {
+        const Http = new XMLHttpRequest();
+        const url='http://localhost:5000/' + element;
+        Http.open("GET", url, true);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+            console.log(Http.responseText)
+            document.getElementById(element).innerHTML = Http.responseText;
+        }
+    }
+
+    function updateSource(element) {
+        const Http = new XMLHttpRequest();
+        const url='http://localhost:5000/' + element;
+        Http.open("GET", url, true);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+            console.log(Http.responseText)
+            document.getElementById(element).src = Http.responseText;
+        }
+    }
+
+    updateText('title');
+    updateText('artist');
+    updateText('album');
+    updateSource('artwork');
+
 </script>
