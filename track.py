@@ -3,7 +3,6 @@ from openhomedevice.Device import Device
 import json
 
 def ssdpDescription():
-    location = ''
 
     netdis = NetworkDiscovery()
     netdis.scan()
@@ -14,17 +13,13 @@ def ssdpDescription():
             continue
         name = data[0]['name']
         if 'Linn Main Room' == name:
-            location = data[0]['ssdp_description']
+            netdis.stop();
+            return data[0]['ssdp_description']
 
     netdis.stop()
-
-    if location:
-        return location
-    else:
-        return 'Error'
+    return 'Error'
 
 def trackInfo():
     return json.loads(json.dumps(openhomeDevice.TrackInfo()))
 
 openhomeDevice = Device(ssdpDescription())
-
