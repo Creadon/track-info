@@ -15,7 +15,7 @@ def ssdpDescription():
             continue
         name = data[0]['name']
         if 'Linn Main Room' == name:
-            netdis.stop();
+            netdis.stop()
             return data[0]['ssdp_description']
 
     netdis.stop()
@@ -38,9 +38,17 @@ def appPage():
 def title():
     return trackInfo()['title']
 
-@app.route('/artist') #TODO clean up returned list
+@app.route('/artist')
 def artist():
-    return json.dumps(trackInfo()['artist'])
+    artistsRaw = json.dumps(trackInfo()['artist'])
+    artistsRaw = artistsRaw[1:-1]
+    artistsRaw = artistsRaw.split(', ')
+    artistList = ''
+    for artist in artistsRaw:
+        artist = artist[1:-1]
+        artistList += artist + ', '
+    artistList = artistList[0:-2]
+    return artistList
 
 @app.route('/album')
 def album():
