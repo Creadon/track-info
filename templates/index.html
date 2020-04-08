@@ -45,15 +45,13 @@
 
 <script>
 
-//TODO Fix onreadystatechange event (always fires 3 times)
-
     function updateText(element) {
         const Http = new XMLHttpRequest();
         const url='http://localhost:5000/' + element;
         Http.open("GET", url, true);
         Http.send();
 
-        Http.onreadystatechange = (e) => {
+        Http.onloadend = (e) => {
             if(Http.responseText.length != 0) {
                 document.getElementById(element).innerHTML = Http.responseText;
             }
@@ -66,7 +64,7 @@
         Http.open("GET", url, true);
         Http.send();
 
-        Http.onreadystatechange = (e) => {
+        Http.onloadend = (e) => {
             if(Http.responseText.length != 0) {
                 document.getElementById(element).src = Http.responseText;
             }
@@ -87,14 +85,12 @@
         Http.open("GET", url, true);
         Http.send();
 
-        Http.onreadystatechange = (e) => {
-
+        Http.onloadend = (e) => {
             if(Http.responseText.length != 0) {
                 if(document.getElementById('title').innerText != Http.responseText) {
                     update();
                 }
             }
-
         }
     }
 
